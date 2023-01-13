@@ -1,6 +1,7 @@
 <?php
 include "templates/header.php";
 include "templates/sidebar-home.php";
+include "templates/chart.php";
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -103,7 +104,39 @@ include "templates/sidebar-home.php";
       </div>
       <!-- /.card -->
 
+    <!-- Chart -->  
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+      
+      const ctx = document.getElementById('myChart');
+      Chart.defaults.font.size = 16;
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: <?php echo json_encode($labeldate); ?>,
+          datasets: [{
+            label: 'Proyek yang sudah selesai',
+            data: <?php echo json_encode($jumlah_proyek); ?>,
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              min: 1,
+              max: 10,
+              beginAtZero: false,
+            }
+          }
+        }
+      });
+    </script>
     </section>
+
     <!-- /.content -->
   </div>
 <?php
