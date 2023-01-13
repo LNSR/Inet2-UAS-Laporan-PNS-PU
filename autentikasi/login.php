@@ -49,7 +49,7 @@ if (isset($_POST['login'])) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../assets/plugins/bootstrap4/css/bootstrap.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/style(sign-up).css">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
