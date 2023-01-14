@@ -2,6 +2,7 @@
 include "templates/header.php";
 include "templates/sidebar-pengajuan.php"
 ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -50,7 +51,13 @@ include "templates/sidebar-pengajuan.php"
               </thead>
               <tbody align="center">
                 <?php
-                $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan'");
+                if ($_SESSION['login']['user_id'] == '1') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan'");
+                } elseif ($_SESSION['login']['user_id'] == '2') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='tim 1'");
+                } elseif ($_SESSION['login']['user_id'] == '3') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='tim 2'");
+                }
                 foreach ($data as $d) :
                 ?>
                 <tr>
@@ -107,7 +114,13 @@ include "templates/sidebar-pengajuan.php"
               </thead>
               <tbody align="center">
                 <?php
-                $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan'");
+                if ($_SESSION['login']['user_id'] == '1') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan'");
+                } elseif ($_SESSION['login']['user_id'] == '2') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan' HAVING n_pegawai='tim 1'");
+                } elseif ($_SESSION['login']['user_id'] == '3') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan' HAVING n_pegawai='tim 2'");
+                }
                 foreach ($data as $d) :
                 ?>
                 <tr>
@@ -163,8 +176,14 @@ include "templates/sidebar-pengajuan.php"
                 <th width="160">Action</th>
               </thead>
               <tbody align="center">
-                <?php
-                $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan'");
+              <?php
+                if ($_SESSION['login']['user_id'] == '1') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan'");
+                } elseif ($_SESSION['login']['user_id'] == '2') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan' HAVING n_pegawai='tim 1'");
+                } elseif ($_SESSION['login']['user_id'] == '3') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan' HAVING n_pegawai='tim 2'");
+                }
                 foreach ($data as $d) :
                 ?>
                 <tr>
