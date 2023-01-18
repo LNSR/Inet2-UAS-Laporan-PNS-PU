@@ -51,9 +51,12 @@ include "templates/sidebar-pengajuan.php"
               </thead>
               <tbody align="center">
                 <?php
-                for ($user_id = 1; $user_id <= 5; $user_id++) {
+                if ($_SESSION['login']['user_id'] == '1') {
+                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan'");
+                } else
+                for ($user_id = 2; $user_id <= 5; $user_id++) {
                   if ($_SESSION['login']['user_id'] == $user_id) {
-                    $nama_tim = 'tim' . $user_id;
+                    $nama_tim = 'tim ' . ($user_id - 1);
                     $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='$nama_tim'");
                   }
                 }
@@ -115,10 +118,12 @@ include "templates/sidebar-pengajuan.php"
                 <?php
                 if ($_SESSION['login']['user_id'] == '1') {
                   $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan'");
-                } elseif ($_SESSION['login']['user_id'] == '2') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan' HAVING n_pegawai='tim 1'");
-                } elseif ($_SESSION['login']['user_id'] == '3') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan' HAVING n_pegawai='tim 2'");
+                } else
+                for ($user_id = 2; $user_id <= 5; $user_id++) {
+                  if ($_SESSION['login']['user_id'] == $user_id) {
+                    $nama_tim = 'tim ' . ($user_id - 1);
+                    $data = query("SELECT * FROM Pengajuan WHERE status='Sedang dikerjakan' HAVING n_pegawai='$nama_tim'");
+                  }
                 }
                 foreach ($data as $d) :
                 ?>
@@ -178,10 +183,12 @@ include "templates/sidebar-pengajuan.php"
               <?php
                 if ($_SESSION['login']['user_id'] == '1') {
                   $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan'");
-                } elseif ($_SESSION['login']['user_id'] == '2') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan' HAVING n_pegawai='tim 1'");
-                } elseif ($_SESSION['login']['user_id'] == '3') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan' HAVING n_pegawai='tim 2'");
+                } else
+                for ($user_id = 2; $user_id <= 5; $user_id++) {
+                  if ($_SESSION['login']['user_id'] == $user_id) {
+                    $nama_tim = 'tim ' . ($user_id - 1);
+                    $data = query("SELECT * FROM Pengajuan WHERE status='Selesai dikerjakan' HAVING n_pegawai='$nama_tim'");
+                  }
                 }
                 foreach ($data as $d) :
                 ?>
