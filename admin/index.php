@@ -68,19 +68,21 @@ include "templates/chart.php";
                     <?php } ?>
                     <td>
                       <?php
-                        if ($d['username'] !== 'admin' AND $d['username'] !== 'ADMIN') {
-                      ?>
+                      if ($_SESSION['login']['user_id'] == '1') {
+                        if ($d['username'] !== 'admin') {
+                          ?>
                         <a href="delete-acc.php?id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-outline-danger mb-2" style="width: 100px;"><span class="fas fa-trash-alt mr-2"></span>Delete</a>
                       <?php
-                        if ($d['status'] == 0) {
-                      ?>
+                      if ($d['status'] == 0) {
+                        ?>
                         <a href="active-acc.php?user_id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-outline-success mb-2 mr-2" style="width: 100px;"><span class="fas fa-check mr-2"></span>Active</a>
                       <?php
-                        } else { 
-                      ?>
+                      } else {
+                        ?>
                         <a href="nonactive-acc.php?user_id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-outline-secondary mb-2 mr-2" style="width: 100px;" ><span class="fas fa-times mr-2"></span>Non-active</a>
-                      <?php 
-                        } 
+                      <?php
+                      }
+                        }
                       }
                       ?>
                     </td>

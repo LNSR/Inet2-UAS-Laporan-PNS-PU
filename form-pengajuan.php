@@ -36,11 +36,19 @@ $kodeProyek = $huruf . sprintf("%04s", $urutan);
               <p class="text-sm"><span style="color: red;">*</span>Harap catat kode ini untuk melakukan pengecekan sendiri melalui kolom pencarian.</p>
           <div>
           <div class="form-group">
-              <label for="nama">Nama Pegawai</label>
-              <input type="text" name="nama" id="nama" class="form-control"  required>
+              <label for="nama">Pilih Tim</label>
+              <select class="form-control" name="nama" id="nama" required>
+              <?php
+              $team = "SELECT username as tim FROM user WHERE NOT username='admin'";
+              $result_team = $conn->query($team);
+              while($column_team = $result_team->fetch_assoc()) {
+                echo "<option value='" . htmlspecialchars($column_team['tim'], ENT_QUOTES) . "'>" . htmlspecialchars($column_team['tim'], ENT_QUOTES) . "</option>";
+              }
+              ?>
+              </select>
           <div>
           <div class="form-group">
-              <label for="jabatan">Jabatan Pegawai</label>
+              <label for="jabatan">Jabatan</label>
               <select class="form-control" name="jabatan" id="jabatan" required>
                 <option>Fungsional</option>
                 <option>Perencana</option>

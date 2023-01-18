@@ -43,7 +43,7 @@ include "templates/sidebar-pengajuan.php"
             <table class="table table-hover" id="table" width="100%">
               <thead align="center">
                 <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>
@@ -51,12 +51,11 @@ include "templates/sidebar-pengajuan.php"
               </thead>
               <tbody align="center">
                 <?php
-                if ($_SESSION['login']['user_id'] == '1') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan'");
-                } elseif ($_SESSION['login']['user_id'] == '2') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='tim 1'");
-                } elseif ($_SESSION['login']['user_id'] == '3') {
-                  $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='tim 2'");
+                for ($user_id = 1; $user_id <= 5; $user_id++) {
+                  if ($_SESSION['login']['user_id'] == $user_id) {
+                    $nama_tim = 'tim' . $user_id;
+                    $data = query("SELECT * FROM Pengajuan WHERE status='Sedang diajukan' HAVING n_pegawai='$nama_tim'");
+                  }
                 }
                 foreach ($data as $d) :
                 ?>
@@ -76,7 +75,7 @@ include "templates/sidebar-pengajuan.php"
               </tbody>
               <tfoot align="center">
                 <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>
@@ -106,7 +105,7 @@ include "templates/sidebar-pengajuan.php"
             <table class="table-hover" id="table2" width="100%">
               <thead align="center">
                 <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>
@@ -139,7 +138,7 @@ include "templates/sidebar-pengajuan.php"
               </tbody>
               <tfoot align="center">
                 <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>
@@ -169,7 +168,7 @@ include "templates/sidebar-pengajuan.php"
             <table class="table-hover" id="table3" width="100%">
               <thead align="center">
               <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>
@@ -202,7 +201,7 @@ include "templates/sidebar-pengajuan.php"
               </tbody>
               <tfoot align="center">
               <th>No.</th>
-                <th>Nama Pegawai</th>
+                <th>Nama Tim</th>
                 <th>Proyek</th>
                 <th>Keterangan</th>
                 <th>Tgl. Lapor</th>

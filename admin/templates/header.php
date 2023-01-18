@@ -27,6 +27,7 @@ include '../fungsi.php';
   <link rel="stylesheet" href="../assets/plugins/jquery-ui/jquery-ui.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
 </head>
+
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
